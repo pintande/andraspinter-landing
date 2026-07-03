@@ -99,6 +99,29 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   });
 
+  /* ---------- Kontakt: bedingtes Website-Feld ---------- */
+  var websiteToggle = document.querySelector('.segmented-control');
+  var websiteWrapper = document.getElementById('website-field-wrapper');
+  var websiteInput = document.getElementById('webseite');
+
+  if (websiteToggle && websiteWrapper && websiteInput) {
+    websiteToggle.addEventListener('change', function (e) {
+      if (!e.target || e.target.name !== 'hat_website') return;
+
+      if (e.target.value === 'ja') {
+        websiteWrapper.classList.add('is-visible');
+        websiteInput.disabled = false;
+        websiteInput.required = true;
+      } else {
+        websiteWrapper.classList.remove('is-visible');
+        websiteInput.disabled = true;
+        websiteInput.required = false;
+        websiteInput.value = '';
+        websiteInput.setCustomValidity('');
+      }
+    });
+  }
+
   /* ---------- Cookie banner ---------- */
   var cookieBanner = document.querySelector('.cookie-banner');
 
