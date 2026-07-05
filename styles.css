@@ -199,7 +199,8 @@ h3 {
   .btn-cta:hover::before,
   .btn-cta:focus-visible::before,
   .brand:hover .logo-sweep-effect::before,
-  .brand:focus-visible .logo-sweep-effect::before {
+  .brand:focus-visible .logo-sweep-effect::before,
+  .solution-card:hover .solution-card-icon::after {
     animation: none;
   }
 }
@@ -912,25 +913,73 @@ header.site-header.is-scrolled {
 }
 
 .solution-card:hover {
+  position: relative;
+  z-index: 10;
   transform: translateY(-4px);
   box-shadow: var(--shadow-card-hover);
 }
 
 .solution-card-icon {
+  position: relative;
   display: block;
   width: 100%;
   height: 130px;
   margin: 0 auto 12px;
   border-radius: var(--radius-md);
   overflow: hidden;
+  background: linear-gradient(135deg, rgba(var(--color-accent-rgb), 0.1), rgba(var(--color-accent-rgb), 0.02));
+  box-shadow: inset 0 0 0 1px rgba(var(--color-accent-rgb), 0.08);
+  isolation: isolate;
+  z-index: 1;
+  transition: box-shadow 0.3s ease;
 }
 
 .solution-card-icon img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
   object-position: center;
   display: block;
+  padding: 14px;
+  box-sizing: border-box;
+  border-radius: var(--radius-md);
+  transition: transform 0.4s ease;
+}
+
+.solution-card-icon::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(
+    100deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0) 40%,
+    rgba(255, 255, 255, 0.5) 50%,
+    rgba(255, 255, 255, 0) 60%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  background-size: 250% 100%;
+  background-position: 0% 50%;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+.solution-card:hover .solution-card-icon {
+  overflow: visible;
+  z-index: 30;
+  box-shadow: inset 0 0 0 1px rgba(var(--color-accent-rgb), 0.08), 0 10px 24px rgba(var(--color-accent-rgb), 0.16);
+}
+
+.solution-card:hover .solution-card-icon img {
+  transform: scale(1.6);
+  box-shadow: 0 20px 40px rgba(14, 18, 32, 0.22);
+}
+
+.solution-card:hover .solution-card-icon::after {
+  opacity: 1;
+  animation: btn-cta-flow 1.2s ease-in-out forwards;
 }
 
 .solution-card h3 {
@@ -1209,9 +1258,6 @@ header.site-header.is-scrolled {
 }
 
 .referenzen-image-group {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
   min-width: 0;
 }
 
@@ -1223,18 +1269,9 @@ header.site-header.is-scrolled {
 
 .referenzen-image img {
   width: 100%;
-  height: 460px;
+  height: 560px;
   object-fit: cover;
   display: block;
-}
-
-.referenzen-image-sub {
-  max-width: none;
-  align-self: stretch;
-}
-
-.referenzen-image-sub img {
-  height: 260px;
 }
 
 .referenzen-content p {
@@ -1248,50 +1285,39 @@ header.site-header.is-scrolled {
   font-size: 16px;
 }
 
-.referenzen-subheading {
-  margin-top: 28px;
-  margin-bottom: 4px;
-  font-size: 28px;
+.referenzen-checklist {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px 24px;
+  margin: 20px 0 32px;
 }
 
-.referenzen-list {
+.referenzen-checklist li {
   display: flex;
-  flex-direction: column;
-  gap: 16px;
-  margin-top: 16px;
-  margin-bottom: 8px;
-}
-
-.referenzen-list li {
-  display: flex;
-  gap: 14px;
-  align-items: center;
+  align-items: flex-start;
+  gap: 12px;
   color: var(--color-text);
-  font-size: 0.98rem;
+  font-size: 16px;
+  line-height: 1.45;
 }
 
-.referenzen-list-icon {
+.checklist-icon {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 40px;
-  height: 40px;
-  border-radius: var(--radius-pill);
-  background: rgba(var(--color-accent-rgb), 0.1);
-  color: var(--color-accent);
-  flex-shrink: 0;
-  transition: transform 0.3s ease, background 0.3s ease;
-}
-
-.referenzen-list-icon svg {
-  width: 20px;
-  height: 20px;
-}
-
-.referenzen-list li:hover .referenzen-list-icon {
-  transform: scale(1.1);
+  width: 24px;
+  height: 24px;
+  margin-top: 1px;
+  border-radius: 50%;
   background: var(--gradient-cta);
   color: #fff;
+  flex-shrink: 0;
+  box-shadow: 0 4px 10px rgba(var(--color-accent-rgb), 0.3);
+}
+
+.checklist-icon svg {
+  width: 13px;
+  height: 13px;
 }
 
 .referenzen-projects h3.subtitle {
@@ -2137,19 +2163,6 @@ footer.site-footer {
     height: 315px;
   }
 
-  .referenzen-image-group {
-    flex-direction: row;
-  }
-
-  .referenzen-image-main {
-    flex: 1;
-  }
-
-  .referenzen-image-sub {
-    max-width: 160px;
-    align-self: flex-end;
-  }
-
   .hero-badge-2,
   .hero-badge-4,
   .hero-badge-5,
@@ -2311,21 +2324,12 @@ footer.site-footer {
     align-items: flex-start;
   }
 
-  .referenzen-image-group {
-    flex-direction: column;
-  }
-
-  .referenzen-image-sub {
-    max-width: none;
-    align-self: stretch;
-  }
-
   .referenzen-image img {
     height: 320px;
   }
 
-  .referenzen-image-sub img {
-    height: 220px;
+  .referenzen-checklist {
+    grid-template-columns: 1fr;
   }
 
   .cookie-banner .container {
