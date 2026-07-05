@@ -15,7 +15,7 @@
 <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16x16.png">
 <link rel="icon" type="image/png" href="assets/favicon.png">
-<link rel="stylesheet" href="styles.css?v=202607044">
+<link rel="stylesheet" href="styles.css?v=202607078">
 </head>
 <body>
 
@@ -46,7 +46,7 @@
   <nav class="navbar">
     <div class="container">
       <a href="index.html#start" class="brand">
-        <span class="brand-mark">
+        <span class="brand-mark logo-sweep-effect">
           <img src="assets/images/andras/Andras_1.JPG" alt="Andras Pinter Logo">
         </span>
         <span class="brand-name">
@@ -76,8 +76,8 @@
 <section class="hero" id="start">
   <div class="container">
     <div class="hero-content reveal">
-      <h1><span class="text-accent">SEO, GEO & KI-Sichtbarkeit</span> Beratung für KMU in Hessen & der <span class="text-accent">DACH-Region</span></h1>
-      <p>Ich helfe kleinen und mittleren Unternehmen, bei Google, ChatGPT, Perplexity und anderen KI-Suchsystemen besser sichtbar zu werden.</p>
+      <h1><span class="text-accent">SEO Beratung</span> für KMU in Hessen & der DACH-Region, die auch bei <span class="text-accent">ChatGPT & Google</span> gefunden werden wollen</h1>
+      <p>Ich helfe kleinen und mittleren Unternehmen, bei Google und den neuen KI-Suchsystemen wie ChatGPT und Perplexity sichtbar zu bleiben.</p>
       <div class="hero-actions">
         <a href="#kontakt" class="btn btn-cta">Kostenlose Analyse anfragen</a>
         <a href="#leistungen" class="btn btn-outline">Leistungen ansehen</a>
@@ -105,43 +105,58 @@
 <section class="problem section-white">
   <div class="container">
     <div class="problem-header reveal">
+      <span class="eyebrow">Herausforderung</span>
       <h2>Ihre Website ist online – aber wird <span class="text-accent">nicht gefunden?</span></h2>
-      <p class="section-intro">Viele Unternehmen haben eine Website, die kaum Ergebnisse liefert.</p>
+      <p class="section-intro">Viele Unternehmen haben eine Website, aber erscheinen kaum bei Google, in lokalen Suchergebnissen oder in KI-Systemen wie ChatGPT, Gemini und Perplexity.</p>
     </div>
     <div class="problem-visual reveal">
       <img src="assets/images/sections/website-nicht-gefunden-frustration.jpg" alt="Frustrierter Unternehmer blickt auf sinkende Google-Rankings auf seinem Laptop" width="1712" height="864" loading="lazy">
     </div>
-    <div class="problem-list">
-      <div class="problem-item reveal">
-        <img src="assets/images/icons-problem/traffic-rueckgang.png" alt="" width="320" height="320">
-        <h3>Wenig organischer Traffic</h3>
-        <p class="problem-desc">Ihre Website ist online, bringt aber kaum Besucher über Google. Ohne technische SEO-Basis bleibt wertvoller Traffic ungenutzt.</p>
+    <div class="problem-subheading reveal">
+      <h3>Mögliche Gründe, warum Ihre Website bei Google & KI-Systemen nicht sichtbar ist</h3>
+      <p>Wenn eine Website online ist, aber kaum Besucher, Rankings oder Anfragen bringt, liegt das meistens nicht an einem einzelnen Problem. Häufig fehlen technische SEO-Basis, relevante Inhalte, lokale Signale, Branchenverzeichnisse, Social-Media-Vertrauen oder klare Erwähnungen in KI-relevanten Quellen.</p>
+    </div>
+    <div class="challenges-carousel reveal" id="challengesCarousel">
+      <button type="button" class="carousel-arrow carousel-arrow-prev" aria-label="Vorherige Herausforderung">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+      </button>
+      <div class="challenges-viewport">
+        <div class="challenges-track" role="group" aria-roledescription="Karussell" aria-label="Herausforderungen">
+          <div class="challenge-card" data-index="0" role="group" aria-roledescription="Folie" aria-label="1 von 6">
+            <img src="assets/images/icons-problem/traffic-rueckgang.png" alt="" width="320" height="320" draggable="false">
+            <h3>Wenig organischer Traffic</h3>
+            <p class="problem-desc">Ihre Website ist online, bringt aber kaum Besucher über Google. Ohne technische SEO-Basis bleibt wertvoller Traffic ungenutzt.</p>
+          </div>
+          <div class="challenge-card" data-index="1" role="group" aria-roledescription="Folie" aria-label="2 von 6">
+            <img src="assets/images/icons-problem/schwaches-google-ranking.png" alt="" width="320" height="320" draggable="false">
+            <h3>Schwaches Google-Ranking</h3>
+            <p class="problem-desc">Relevante Suchanfragen werden von Wettbewerbern besetzt. Struktur, Inhalte und Optimierung fehlen.</p>
+          </div>
+          <div class="challenge-card" data-index="2" role="group" aria-roledescription="Folie" aria-label="3 von 6">
+            <img src="assets/images/icons-problem/keine-ki-sichtbarkeit.png" alt="" width="320" height="320" draggable="false">
+            <h3>Keine Sichtbarkeit in KI-Systemen</h3>
+            <p class="problem-desc">ChatGPT, Gemini und Perplexity nennen oft andere Anbieter. Wer dort nicht auftaucht, verliert neue Nachfrage.</p>
+          </div>
+          <div class="challenge-card" data-index="3" role="group" aria-roledescription="Folie" aria-label="4 von 6">
+            <img src="assets/images/icons-problem/technische-seo-fehler.png" alt="" width="320" height="320" draggable="false">
+            <h3>Technische SEO-Probleme</h3>
+            <p class="problem-desc">Langsame Ladezeiten, JavaScript-Probleme oder fehlende Struktur verhindern bessere Rankings.</p>
+          </div>
+          <div class="challenge-card" data-index="4" role="group" aria-roledescription="Folie" aria-label="5 von 6">
+            <img src="assets/images/icons-problem/geringe-lokale-sichtbarkeit-hessen.png" alt="" width="320" height="320" draggable="false">
+            <h3>Geringe lokale Sichtbarkeit</h3>
+            <p class="problem-desc">In Hessen und der DACH-Region werden viele lokale Anbieter online kaum gefunden – trotz vorhandener Website.</p>
+          </div>
+          <div class="challenge-card" data-index="5" role="group" aria-roledescription="Folie" aria-label="6 von 6">
+            <img src="assets/images/icons-problem/schwache-social-media-praesenz.png" alt="" width="480" height="480" draggable="false">
+            <h3>Schwache Social-Media-Präsenz</h3>
+            <p class="problem-desc">Wenn Social Media kaum aktiv ist, fehlen wichtige Vertrauens- und Markensignale. Das reduziert Reichweite, Erwähnungen und Sichtbarkeit bei Google und KI-Systemen.</p>
+          </div>
+        </div>
       </div>
-      <div class="problem-item reveal">
-        <img src="assets/images/icons-problem/schwaches-google-ranking.png" alt="" width="320" height="320">
-        <h3>Schwaches Google-Ranking</h3>
-        <p class="problem-desc">Relevante Suchanfragen werden von Wettbewerbern besetzt. Struktur, Inhalte und Optimierung fehlen.</p>
-      </div>
-      <div class="problem-item reveal">
-        <img src="assets/images/icons-problem/keine-ki-sichtbarkeit.png" alt="" width="320" height="320">
-        <h3>Keine Sichtbarkeit in KI-Systemen</h3>
-        <p class="problem-desc">ChatGPT, Gemini und Perplexity nennen oft andere Anbieter. Wer dort nicht auftaucht, verliert neue Nachfrage.</p>
-      </div>
-      <div class="problem-item reveal">
-        <img src="assets/images/icons-problem/technische-seo-fehler.png" alt="" width="320" height="320">
-        <h3>Technische SEO-Probleme</h3>
-        <p class="problem-desc">Langsame Ladezeiten, JavaScript-Probleme oder fehlende Struktur verhindern bessere Rankings.</p>
-      </div>
-      <div class="problem-item reveal">
-        <img src="assets/images/icons-problem/geringe-lokale-sichtbarkeit-hessen.png" alt="" width="320" height="320">
-        <h3>Geringe lokale Sichtbarkeit</h3>
-        <p class="problem-desc">In Hessen und der DACH-Region werden viele lokale Anbieter online kaum gefunden – trotz vorhandener Website.</p>
-      </div>
-      <div class="problem-item reveal">
-        <img src="assets/images/icons-problem/schwache-social-media-praesenz.png" alt="" width="480" height="480">
-        <h3>Schwache Social-Media-Präsenz</h3>
-        <p class="problem-desc">Wenn Social Media kaum aktiv ist, fehlen wichtige Vertrauens- und Markensignale. Das reduziert Reichweite, Erwähnungen und Sichtbarkeit bei Google und KI-Systemen.</p>
-      </div>
+      <button type="button" class="carousel-arrow carousel-arrow-next" aria-label="Nächste Herausforderung">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg>
+      </button>
     </div>
     <div class="problem-footer reveal">
       <a href="#kontakt" class="btn btn-cta">Kostenlose Sichtbarkeitsanalyse anfragen</a>
@@ -149,24 +164,41 @@
   </div>
 </section>
 
-<!-- ========================== SEO + GEO EXPLAINER ========================== -->
-<section class="seo-geo section-soft">
+<!-- ========================== SOLUTION: SICHTBARKEIT BEI GOOGLE & KI ========================== -->
+<section class="solution section-soft">
   <div class="container">
-    <h2 class="reveal">SEO bringt Sie in <span class="text-accent">Google</span> nach vorne. GEO macht Ihre Inhalte für <span class="text-accent">KI-Systeme</span> verständlich.</h2>
-    <div class="seo-geo-visual reveal">
-      <img src="assets/images/sections/seo-geo-banner-b.png" alt="Gegenüberstellung von klassischer Google-Suche und KI-gestützter Suche" width="1440" height="1082">
+    <div class="solution-header reveal">
+      <span class="eyebrow">Lösung</span>
+      <h2>Mehr Sichtbarkeit bei <span class="text-accent">Google & KI-Systemen</span>.</h2>
+      <p class="section-intro">Ich optimiere Ihre Website so, dass Google und moderne KI-Systeme Ihr Unternehmen besser verstehen, einordnen und als relevante Quelle erkennen können.</p>
     </div>
-    <div class="seo-geo-columns">
-      <div class="seo-geo-col seo reveal">
-        <h3>SEO</h3>
-        <p>Technische OnPage-Optimierung, saubere Keyword-Strategie und Offpage-Autorität sorgen dafür, dass Google Ihre Website versteht und bei relevanten Suchanfragen zeigt.</p>
+    <div class="solution-grid">
+      <div class="solution-card reveal">
+        <span class="solution-card-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="m19 9-5 5-4-4-3 3"/></svg>
+        </span>
+        <h3>Besser bei Google gefunden werden</h3>
+        <p>Durch technische SEO, klare Seitenstruktur, relevante Suchbegriffe und bessere Inhalte wird Ihre Website für passende Suchanfragen sichtbarer.</p>
       </div>
-      <div class="seo-geo-col geo reveal">
-        <h3>GEO</h3>
-        <p>GEO (Generative Engine Optimization) sorgt dafür, dass Ihre Inhalte in KI Overviews, im Google AI Mode sowie in ChatGPT, Perplexity und Gemini als vertrauenswürdige Quelle erkannt und zitiert werden – nicht nur gelistet, sondern tatsächlich empfohlen.</p>
+      <div class="solution-card reveal">
+        <span class="solution-card-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.5 13.4 7l4.6 1.5-4.6 1.5L12 14.5 10.6 10 6 8.5 10.6 7 12 2.5Z"/><path d="M19 14.5 19.8 17l2.2.9-2.2.9-.8 2.5-.8-2.5-2.2-.9 2.2-.9.8-2.5Z"/></svg>
+        </span>
+        <h3>Für KI-Systeme verständlich werden</h3>
+        <p>Ihre Inhalte werden so aufgebaut, dass Systeme wie ChatGPT, Gemini, Perplexity und Google AI Ihre Expertise, Leistungen und Vertrauenssignale besser erfassen können.</p>
+      </div>
+      <div class="solution-card reveal">
+        <span class="solution-card-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 5 6.5v5.2c0 4.6 3 8.3 7 9.3 4-1 7-4.7 7-9.3V6.5L12 3Z"/><path d="m9 12 2 2 4-4"/></svg>
+        </span>
+        <h3>Digitale Autorität aufbauen</h3>
+        <p>Branchenverzeichnisse, lokale Signale, Erwähnungen, Google Business Profile und eine aktive Online-Präsenz stärken die Glaubwürdigkeit Ihres Unternehmens.</p>
       </div>
     </div>
-    <p class="seo-geo-note reveal">GEO baut auf SEO auf – wer bei Google technisch nicht sauber aufgestellt ist, wird auch von KI-Systemen seltener als Quelle erkannt. Beide Ebenen arbeiten zusammen, nicht gegeneinander.</p>
+    <p class="solution-note reveal">Messbar statt Bauchgefühl: Ich analysiere, wo Ihr Unternehmen aktuell sichtbar ist, welche Wettbewerber stärker sind und welche Maßnahmen notwendig sind, um Ihre Präsenz bei Google und in KI-Systemen gezielt zu verbessern.</p>
+    <div class="solution-footer reveal">
+      <a href="#kontakt" class="btn btn-cta">Kostenlose Sichtbarkeitsanalyse anfragen</a>
+    </div>
   </div>
 </section>
 
@@ -174,105 +206,67 @@
 <section class="services section-white" id="leistungen">
   <div class="container">
     <div class="services-layout">
-      <div class="services-intro reveal">
-        <h2>Was ich für <span class="text-accent">Sie</span> tue</h2>
-        <p>Ich helfe Unternehmen dabei, bei Google, in lokalen Suchergebnissen und in KI-Antwortsystemen sichtbarer zu werden – mit SEO, GEO, Google Ads und klarer technischer Optimierung.</p>
+      <div class="services-header reveal">
+        <span class="eyebrow">Leistungen</span>
+        <h2>Mehr Sichtbarkeit für Ihr Unternehmen bei <span class="text-accent">Google & KI</span></h2>
+        <p class="section-intro">Ich helfe Unternehmen dabei, bei Google, in lokalen Suchergebnissen und in KI-Antwortsystemen sichtbar zu werden – mit SEO, GEO, Google Ads und klarer technischer Optimierung.</p>
         <a href="#kontakt" class="btn btn-cta">Beratungsgespräch anfordern</a>
-        <div class="services-intro-extra">
-          <div class="service-card reveal" id="seo-geo-reporting">
-            <a href="#kontakt" class="arrow-btn" aria-label="Mehr zu Monatliches SEO/GEO Reporting & Monitoring">↗</a>
-            <div class="service-card-icon">
-              <img src="assets/images/icons-services/reporting-monitoring.png" alt="" width="480" height="480" loading="lazy">
-            </div>
-            <h3>Monatliches SEO/GEO Reporting & Monitoring</h3>
-            <p class="lead">Klarheit statt Rätselraten, jeden Monat.</p>
-            <p class="desc">Regelmäßiger Bericht zu Rankings, KI-Sichtbarkeit, PageSpeed und Suchverkehr, basierend auf Google Search Console, Google Analytics und PageSpeed Insights, damit Sie jederzeit wissen, wo Ihr Unternehmen steht.</p>
-          </div>
-          <div class="service-card reveal" id="ki-workshop">
-            <a href="#kontakt" class="arrow-btn" aria-label="Mehr zu KI-Workshop für Teams">↗</a>
-            <div class="service-card-icon">
-              <img src="assets/images/icons-services/ki-workshop.png" alt="" width="480" height="480" loading="lazy">
-            </div>
-            <h3>KI-Workshop für Teams</h3>
-            <p class="lead">KI-Sichtbarkeit für Ihr Team greifbar gemacht.</p>
-            <p class="desc">Praxisnaher Workshop für KMU-Teams, wie Ihr Unternehmen in ChatGPT, Perplexity und Google AI Overviews sichtbar wird, mit konkreten Schritten für die tägliche Arbeit.</p>
-          </div>
-        </div>
       </div>
       <div class="services-grid">
-        <div class="service-card reveal" id="seo-beratung">
-          <a href="#kontakt" class="arrow-btn" aria-label="Mehr zu Suchmaschinenoptimierung (SEO) Beratung">↗</a>
-          <div class="service-card-icon">
-            <img src="assets/images/icons-services/seo-beratung.png" alt="" width="480" height="480" loading="lazy">
-          </div>
-          <h3>Suchmaschinenoptimierung (SEO) Beratung</h3>
-          <p class="lead">Sichtbarkeit bei Google, die auch langfristig trägt.</p>
-          <p class="desc">Technische Audits, OnPage- und OffPage-Optimierung, Content-Struktur, Backlink-Aufbau, Branchenverzeichnisse, Search Console und Screaming Frog, für nachhaltige Rankings statt kurzfristiger Ausschläge.</p>
+      <div class="service-card reveal" id="seo-beratung">
+        <div class="service-card-icon">
+          <img src="assets/images/icons-services/seo-beratung.png" alt="" width="480" height="480" loading="lazy">
         </div>
-        <div class="service-card reveal" id="lokale-seo">
-          <a href="#kontakt" class="arrow-btn" aria-label="Mehr zu Lokale SEO">↗</a>
-          <div class="service-card-icon">
-            <img src="assets/images/icons-services/lokale-seo.png" alt="" width="480" height="480" loading="lazy">
-          </div>
-          <h3>Lokale SEO</h3>
-          <p class="lead">Gefunden werden, wo Ihre Kunden wirklich suchen.</p>
-          <p class="desc">Optimierung für Google Business Profile, lokale Keywords und Standortsignale, mit Erfahrung in Hessen und darüber hinaus, damit Sie in Ihrer Region online gefunden werden.</p>
-        </div>
-        <div class="service-card reveal" id="geo-ki-sichtbarkeit">
-          <a href="#kontakt" class="arrow-btn" aria-label="Mehr zu GEO (Generative Engine Optimization)">↗</a>
-          <div class="service-card-icon">
-            <img src="assets/images/icons-services/geo.png" alt="" width="480" height="480" loading="lazy">
-          </div>
-          <h3>GEO (Generative Engine Optimization)</h3>
-          <p class="lead">Sichtbar werden in ChatGPT, Perplexity und Google AI.</p>
-          <p class="desc">Analyse von KI-Antwortsystemen, Quellenzitate, Markenpräsenz und Empfehlungsstärke, damit Ihr Unternehmen auch in AI Search vorkommt.</p>
-        </div>
-        <div class="service-card reveal" id="google-ads">
-          <a href="#kontakt" class="arrow-btn" aria-label="Mehr zu Google Ads">↗</a>
-          <div class="service-card-icon">
-            <img src="assets/images/icons-services/google-ads.png" alt="" width="480" height="480" loading="lazy">
-          </div>
-          <h3>Google Ads (SEA)</h3>
-          <p class="lead">Anzeigen, die sich an echten Ergebnissen messen lassen.</p>
-          <p class="desc">Kampagnenstruktur, Zielgruppen, Anzeigentexte, CTR, CPC und Conversion-Rate im Fokus, für qualifizierte Anfragen statt teurer Klicks.</p>
-        </div>
-        <div class="service-card reveal" id="social-media">
-          <a href="#kontakt" class="arrow-btn" aria-label="Mehr zu Social Media">↗</a>
-          <div class="service-card-icon">
-            <img src="assets/images/icons-services/social-media.png" alt="" width="480" height="480" loading="lazy">
-          </div>
-          <h3>Social Media</h3>
-          <p class="lead">Reichweite und Community, die zu Ihrer Marke passt.</p>
-          <p class="desc">Content-Strategie, Posting und Zielgruppenaufbau, von der Konzeption bis zur laufenden Betreuung Ihrer Kanäle.</p>
-        </div>
-        <div class="service-card reveal" id="wordpress-optimierung">
-          <a href="#kontakt" class="arrow-btn" aria-label="Mehr zu WordPress-Optimierung und Page Speed">↗</a>
-          <div class="service-card-icon">
-            <img src="assets/images/icons-services/wordpress-optimierung.png" alt="" width="480" height="480" loading="lazy">
-          </div>
-          <h3>WordPress-Optimierung & Page Speed</h3>
-          <p class="lead">Die technische Basis, auf der Sichtbarkeit erst möglich wird.</p>
-          <p class="desc">Ladezeit, Core Web Vitals, mobile Darstellung, WebP-Bildoptimierung und sichere Updates, eine bestehende WordPress-Website, die für Google, KI-Crawler und Besucher gleichermaßen funktioniert.</p>
-        </div>
+        <h3>SEO-Optimierung & technische SEO</h3>
+        <p class="lead">Sichtbarkeit bei Google, die auch langfristig trägt.</p>
+        <p class="desc">Technische Audits, OnPage-Optimierung, Content-Struktur, Core Web Vitals, Page Speed und WordPress-Optimierung – für bessere Rankings und eine stabile technische Basis.</p>
+      <a href="#kontakt" class="arrow-btn" aria-label="Mehr zu SEO-Optimierung & technische SEO">↗</a>
       </div>
-    </div>
-  </div>
-</section>
-
-<!-- ========================== KI-SICHTBARKEIT / GEO ========================== -->
-<section class="ai-visibility section-soft">
-  <div class="container">
-    <div class="ai-visibility-text reveal">
-      <h2>Wie ich Ihre <span class="text-accent">GEO & KI-Sichtbarkeit</span> messbar mache.</h2>
-      <p>Mit meinem eigenen GEO-Tracking-System messe ich systematisch, wie Ihr Unternehmen in generativen Suchsystemen wie ChatGPT, Perplexity, Google AI Overviews und im AI Mode wahrgenommen wird – anhand von vier zentralen Kennzahlen: Markenpräsenz, Quellenzitate, Empfehlungsstärke und Wettbewerbsanteile im Vergleich zu Ihren Mitbewerbern.</p>
-      <p>Daraus entsteht für Sie ein klares Bild Ihrer aktuellen KI-Sichtbarkeit und ein konkreter Maßnahmenplan: welche GEO-Signale gezielt aufgebaut werden müssen, damit Ihr Unternehmen in KI-Antworten nicht nur genannt, sondern aktiv empfohlen wird.</p>
-    </div>
-    <div class="ai-visibility-card reveal">
-      <span class="eyebrow">Fokus</span>
-      <h3>GEO & KI-Sichtbarkeit als strategischer Vorteil.</h3>
-      <p>Mehr als reine Keyword-Optimierung: ein konsistentes Unternehmensprofil, klare Frage-Antwort-Struktur und Inhalte, die KI-Systeme zuverlässig als vertrauenswürdige Quelle erkennen und zitieren.</p>
-      <div class="img-wrap">
-        <img src="assets/images/sections/geo-focus-d.png" alt="Abstrakte Visualisierung von KI-Sichtbarkeit: Inhalte werden von KI-Suchsystemen erkannt und zitiert" width="1600" height="900">
+      <div class="service-card reveal" id="lokale-seo">
+        <div class="service-card-icon">
+          <img src="assets/images/icons-services/lokale-seo.png" alt="" width="480" height="480" loading="lazy">
+        </div>
+        <h3>Lokale SEO</h3>
+        <p class="lead">Gefunden werden, wo Ihre Kunden wirklich suchen.</p>
+        <p class="desc">Optimierung für Google Business Profile, lokale Keywords, Branchenverzeichnisse und Standortsignale, damit Sie in Ihrer Region besser sichtbar werden.</p>
+      <a href="#kontakt" class="arrow-btn" aria-label="Mehr zu Lokale SEO">↗</a>
+      </div>
+      <div class="service-card reveal" id="geo-ki-sichtbarkeit">
+        <div class="service-card-icon">
+          <img src="assets/images/icons-services/geo.png" alt="" width="480" height="480" loading="lazy">
+        </div>
+        <h3>GEO / KI-Sichtbarkeit</h3>
+        <p class="lead">Sichtbar werden in ChatGPT, Perplexity und Google AI.</p>
+        <p class="desc">Analyse von KI-Antwortsystemen, Quellenstärke, Markenerwähnungen und Empfehlungswahrscheinlichkeit, damit Ihr Unternehmen auch in AI Search vorkommt.</p>
+      <a href="#kontakt" class="arrow-btn" aria-label="Mehr zu GEO / KI-Sichtbarkeit">↗</a>
+      </div>
+      <div class="service-card reveal" id="seo-geo-reporting">
+        <div class="service-card-icon">
+          <img src="assets/images/icons-services/reporting-monitoring.png" alt="" width="480" height="480" loading="lazy">
+        </div>
+        <h3>SEO & GEO Reporting</h3>
+        <p class="lead">Klarheit statt Rätselraten, jeden Monat.</p>
+        <p class="desc">Regelmäßige Auswertung von Rankings, Suchverkehr, KI-Sichtbarkeit, PageSpeed und technischen Signalen – verständlich und handlungsorientiert.</p>
+      <a href="#kontakt" class="arrow-btn" aria-label="Mehr zu SEO & GEO Reporting">↗</a>
+      </div>
+      <div class="service-card reveal" id="google-ads">
+        <div class="service-card-icon">
+          <img src="assets/images/icons-services/google-ads.png" alt="" width="480" height="480" loading="lazy">
+        </div>
+        <h3>Google Ads / SEA</h3>
+        <p class="lead">Anzeigen, die sich an echten Ergebnissen messen lassen.</p>
+        <p class="desc">Kampagnenstruktur, Zielgruppen, Suchanzeigen, CTR, CPC und Conversion-Rate im Fokus – für qualifizierte Anfragen statt teurer Klicks.</p>
+      <a href="#kontakt" class="arrow-btn" aria-label="Mehr zu Google Ads / SEA">↗</a>
+      </div>
+      <div class="service-card reveal" id="social-media">
+        <div class="service-card-icon">
+          <img src="assets/images/icons-services/social-media.png" alt="" width="480" height="480" loading="lazy">
+        </div>
+        <h3>Social Media</h3>
+        <p class="lead">Reichweite und Community, die zu Ihrer Marke passt.</p>
+        <p class="desc">Content-Strategie, Posting, Zielgruppenaufbau und Markenkommunikation – von der Konzeption bis zur laufenden Betreuung Ihrer Kanäle.</p>
+      <a href="#kontakt" class="arrow-btn" aria-label="Mehr zu Social Media">↗</a>
+      </div>
       </div>
     </div>
   </div>
@@ -282,6 +276,7 @@
 <section class="zusammenarbeit section-white">
   <div class="container">
     <div class="zusammenarbeit-header reveal">
+      <span class="eyebrow">Ablauf</span>
       <h2>Wie läuft die Zusammenarbeit mit einem <span class="text-accent">SEO & GEO Berater</span> ab?</h2>
       <p class="section-intro">In 3 einfachen Schritten: Kontakt aufnehmen, Ziele für Suchmaschinenoptimierung und KI-Sichtbarkeit besprechen und einen klaren Maßnahmenplan erhalten.</p>
     </div>
@@ -333,6 +328,7 @@
         </div>
       </div>
       <div class="referenzen-content reveal">
+        <span class="eyebrow">Über mich</span>
         <h2>Warum mit mir arbeiten?</h2>
         <p>Hallo, ich bin Andras Pinter.</p>
         <p>Ich komme ursprünglich aus dem wirtschaftlichen Bereich und habe Tourismuswirtschaft studiert. Seit 2015 lebe und arbeite ich in Deutschland und habe in verschiedenen B2B- und B2C-Unternehmen eine strukturierte und analytische Arbeitsweise entwickelt.</p>
@@ -411,6 +407,9 @@
             <span>Sprachen: Deutsch, Englisch, Ungarisch</span>
           </li>
         </ul>
+        <div class="referenzen-cta">
+          <a href="#kontakt" class="btn btn-cta">Kostenloses Erstgespräch vereinbaren</a>
+        </div>
       </div>
     </div>
   </div>
@@ -452,6 +451,7 @@
 <section class="blog-teaser section-white" id="blog">
   <div class="container">
     <div class="blog-teaser-header reveal">
+      <span class="eyebrow">Blog</span>
       <h2>Wissen für Unternehmer, die jetzt <span class="text-accent">sichtbarer</span> werden wollen.</h2>
     </div>
     <div class="blog-cards">
@@ -496,6 +496,7 @@
 <section class="faq section-soft">
   <div class="container">
     <div class="faq-header reveal">
+      <span class="eyebrow">FAQ</span>
       <h2>Häufig gestellte <span class="text-accent">Fragen</span></h2>
       <p class="faq-subtitle">Antworten auf die wichtigsten Fragen rund um SEO, GEO und moderne Sichtbarkeit bei Google & KI.</p>
     </div>
@@ -607,6 +608,7 @@
 <section class="kontakt section-white" id="kontakt">
   <div class="container">
     <div class="kontakt-text reveal">
+      <span class="eyebrow">Kontakt</span>
       <h2>Jetzt das <span class="text-accent">Potenzial</span> Ihrer Website prüfen lassen.</h2>
       <p>Füllen Sie das Formular aus, um eine persönliche Analyse und konkrete Handlungsempfehlungen zu erhalten. Die Anfrage ist unverbindlich und kommt direkt von mir.</p>
       <ul class="kontakt-trust">
@@ -707,14 +709,12 @@
       <div class="footer-col">
         <h4>Leistungen</h4>
         <ul>
-          <li><a href="#seo-beratung">Suchmaschinenoptimierung (SEO) Beratung</a></li>
+          <li><a href="#seo-beratung">SEO-Optimierung & technische SEO</a></li>
           <li><a href="#lokale-seo">Lokale SEO</a></li>
-          <li><a href="#geo-ki-sichtbarkeit">GEO (Generative Engine Optimization)</a></li>
-          <li><a href="#google-ads">Google Ads (SEA)</a></li>
+          <li><a href="#geo-ki-sichtbarkeit">GEO / KI-Sichtbarkeit</a></li>
+          <li><a href="#seo-geo-reporting">SEO & GEO Reporting</a></li>
+          <li><a href="#google-ads">Google Ads / SEA</a></li>
           <li><a href="#social-media">Social Media</a></li>
-          <li><a href="#wordpress-optimierung">WordPress-Optimierung & Page Speed</a></li>
-          <li><a href="#seo-geo-reporting">Monatliches SEO/GEO Reporting & Monitoring</a></li>
-          <li><a href="#ki-workshop">KI-Workshop für Teams</a></li>
         </ul>
       </div>
       <div class="footer-col">
@@ -755,6 +755,6 @@
   </div>
 </div>
 
-<script src="script.js?v=202607044"></script>
+<script src="script.js?v=202607078"></script>
 </body>
 </html>

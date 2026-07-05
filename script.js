@@ -152,4 +152,185 @@ document.addEventListener('DOMContentLoaded', function () {
       });
     }
   }
+
+  /* ---------- Herausforderungen: 3D-Karussell ---------- */
+  var carousel = document.querySelector('.challenges-carousel');
+
+  if (carousel) {
+    var viewport = carousel.querySelector('.challenges-viewport');
+    var track = carousel.querySelector('.challenges-track');
+    var cards = Array.prototype.slice.call(track.querySelectorAll('.challenge-card'));
+    var prevBtn = carousel.querySelector('.carousel-arrow-prev');
+    var nextBtn = carousel.querySelector('.carousel-arrow-next');
+    var total = cards.length;
+    var currentIndex = 0;
+    var suppressNextClick = false;
+    var isDragging = false;
+    var startX = 0;
+    var dragDelta = 0;
+
+    function getLayoutConfig() {
+      var w = window.innerWidth;
+      if (w < 720) {
+        return { spacing: 40, scaleStep: 0.12, rotate: 8, maxVisible: 0 };
+      }
+      if (w < 1024) {
+        return { spacing: 170, scaleStep: 0.14, rotate: 16, maxVisible: 2 };
+      }
+      return { spacing: 250, scaleStep: 0.14, rotate: 22, maxVisible: 2 };
+    }
+
+    function normalizedDiff(cardIndex) {
+      var diff = cardIndex - currentIndex;
+      diff = ((diff % total) + total) % total;
+      if (diff > total / 2) diff -= total;
+      return diff;
+    }
+
+    function render(liveOffset) {
+      liveOffset = liveOffset || 0;
+      var cfg = getLayoutConfig();
+
+      cards.forEach(function (card, i) {
+        var diff = normalizedDiff(i);
+        var abs = Math.abs(diff);
+        var dir = diff > 0 ? 1 : diff < 0 ? -1 : 0;
+        var x, scale, rotate, opacity, z, pointerEvents;
+
+        card.classList.remove('is-active', 'is-prev', 'is-next');
+
+        if (diff === 0) {
+          x = 0;
+          scale = 1;
+          rotate = 0;
+          opacity = 1;
+          z = 10;
+          pointerEvents = 'auto';
+          card.classList.add('is-active');
+        } else if (cfg.maxVisible === 0) {
+          /* Mobile: nur die aktive Karte sichtbar, Nachbarn knapp daneben für den Swipe-Effekt */
+          x = dir * cfg.spacing;
+          scale = 1 - cfg.scaleStep;
+          rotate = 0;
+          opacity = 0;
+          z = 1;
+          pointerEvents = 'none';
+        } else if (abs <= cfg.maxVisible) {
+          x = dir * cfg.spacing * abs;
+          scale = 1 - cfg.scaleStep * abs;
+          rotate = -dir * cfg.rotate;
+          opacity = abs === 1 ? 0.75 : 0.35;
+          z = 10 - abs;
+          pointerEvents = 'auto';
+          if (diff === -1) card.classList.add('is-prev');
+          if (diff === 1) card.classList.add('is-next');
+        } else {
+          x = dir * 700;
+          scale = 0.6;
+          rotate = -dir * cfg.rotate;
+          opacity = 0;
+          z = 1;
+          pointerEvents = 'none';
+        }
+
+        x += liveOffset;
+
+        card.style.transform = 'translate(-50%, -50%) translateX(' + x + 'px) scale(' + scale + ') rotateY(' + rotate + 'deg)';
+        card.style.opacity = String(opacity);
+        card.style.zIndex = String(z);
+        card.style.pointerEvents = pointerEvents;
+        card.setAttribute('aria-hidden', diff === 0 ? 'false' : 'true');
+        card.tabIndex = diff === 0 ? 0 : -1;
+      });
+    }
+
+    function goTo(index) {
+      currentIndex = ((index % total) + total) % total;
+      render();
+    }
+
+    function next() {
+      goTo(currentIndex + 1);
+    }
+
+    function prev() {
+      goTo(currentIndex - 1);
+    }
+
+    prevBtn.addEventListener('click', prev);
+    nextBtn.addEventListener('click', next);
+
+    cards.forEach(function (card, i) {
+      card.addEventListener('click', function () {
+        if (suppressNextClick) {
+          suppressNextClick = false;
+          return;
+        }
+        if (card.classList.contains('is-active')) return;
+        goTo(i);
+      });
+    });
+
+    carousel.addEventListener('keydown', function (e) {
+      if (e.key === 'ArrowLeft') {
+        e.preventDefault();
+        prev();
+      } else if (e.key === 'ArrowRight') {
+        e.preventDefault();
+        next();
+      }
+    });
+
+    /* Ziehen / Swipe per Maus und Touch (Pointer Events) */
+    viewport.addEventListener('pointerdown', function (e) {
+      isDragging = true;
+      startX = e.clientX;
+      dragDelta = 0;
+      cards.forEach(function (c) {
+        c.classList.add('is-dragging');
+      });
+      if (viewport.setPointerCapture) {
+        viewport.setPointerCapture(e.pointerId);
+      }
+    });
+
+    viewport.addEventListener('pointermove', function (e) {
+      if (!isDragging) return;
+      dragDelta = e.clientX - startX;
+      render(dragDelta);
+    });
+
+    function endDrag() {
+      if (!isDragging) return;
+      isDragging = false;
+      cards.forEach(function (c) {
+        c.classList.remove('is-dragging');
+      });
+
+      var threshold = 50;
+      if (Math.abs(dragDelta) > 5) {
+        suppressNextClick = true;
+      }
+      if (dragDelta > threshold) {
+        prev();
+      } else if (dragDelta < -threshold) {
+        next();
+      } else {
+        render();
+      }
+      dragDelta = 0;
+    }
+
+    viewport.addEventListener('pointerup', endDrag);
+    viewport.addEventListener('pointercancel', endDrag);
+    viewport.addEventListener('pointerleave', function () {
+      if (isDragging) endDrag();
+    });
+
+    window.addEventListener('resize', function () {
+      render();
+    });
+
+    render();
+  }
 });
