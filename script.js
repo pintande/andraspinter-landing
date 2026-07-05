@@ -219,7 +219,7 @@ document.addEventListener('DOMContentLoaded', function () {
           x = dir * cfg.spacing * abs;
           scale = 1 - cfg.scaleStep * abs;
           rotate = -dir * cfg.rotate;
-          opacity = abs === 1 ? 0.75 : 0.35;
+          opacity = abs === 1 ? 0.5 : 0.35;
           z = 10 - abs;
           pointerEvents = 'auto';
           if (diff === -1) card.classList.add('is-prev');
