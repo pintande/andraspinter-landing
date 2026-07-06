@@ -698,9 +698,9 @@ header.site-header.is-scrolled {
 
 .problem-top {
   display: grid;
-  grid-template-columns: 1.2fr 1fr;
+  grid-template-columns: 1fr 300px;
   gap: 48px;
-  align-items: center;
+  align-items: start;
   margin-bottom: 24px;
 }
 
@@ -710,8 +710,6 @@ header.site-header.is-scrolled {
 }
 
 .problem-visual {
-  align-self: center;
-  margin-top: 28px;
   margin-bottom: 0;
   border-radius: var(--radius-lg);
   overflow: hidden;
@@ -726,7 +724,8 @@ header.site-header.is-scrolled {
 
 .problem-subheading {
   max-width: 760px;
-  margin-bottom: 12px;
+  margin: 0 auto 12px;
+  text-align: center;
 }
 
 .problem-subheading h3 {
@@ -1148,7 +1147,7 @@ header.site-header.is-scrolled {
    ========================================================================== */
 
 .zusammenarbeit .container {
-  max-width: 1360px;
+  max-width: 1150px;
 }
 
 .zusammenarbeit-header {
@@ -1185,8 +1184,8 @@ header.site-header.is-scrolled {
 
 .zusammenarbeit-card-image {
   box-sizing: border-box;
-  width: calc(100% - 28px);
-  margin: 14px 14px 0;
+  width: calc(100% - 24px);
+  margin: 12px 12px 0;
   padding: 6px;
   aspect-ratio: 2.3 / 1;
   border-radius: var(--radius-md);
@@ -1209,21 +1208,21 @@ header.site-header.is-scrolled {
 }
 
 .zusammenarbeit-card-body {
-  padding: 20px 24px 24px;
+  padding: 16px 20px 20px;
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 8px;
   flex-grow: 1;
 }
 
 .zusammenarbeit-card h3 {
-  font-size: 24px;
+  font-size: 21px;
   font-weight: 800;
 }
 
 .zusammenarbeit-card p {
   color: var(--color-text-secondary);
-  font-size: 16px;
+  font-size: 15px;
   flex-grow: 1;
 }
 
@@ -1261,7 +1260,29 @@ header.site-header.is-scrolled {
   min-width: 0;
 }
 
+.referenzen-image-frame {
+  position: relative;
+  padding: 20px;
+}
+
+.referenzen-image-frame::before {
+  content: "";
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  right: 20px;
+  bottom: 20px;
+  background: #FF5936;
+  border-radius: var(--radius-lg);
+  transform: rotate(-4deg) scale(0.85);
+  z-index: 0;
+}
+
 .referenzen-image {
+  position: relative;
+  z-index: 1;
+  max-width: 87%;
+  margin: 0 auto;
   border-radius: var(--radius-lg);
   overflow: hidden;
   box-shadow: var(--shadow-card);
@@ -1269,7 +1290,7 @@ header.site-header.is-scrolled {
 
 .referenzen-image img {
   width: 100%;
-  height: 560px;
+  height: 490px;
   object-fit: cover;
   display: block;
 }
@@ -1322,7 +1343,16 @@ header.site-header.is-scrolled {
 
 .referenzen-projects h3.subtitle {
   font-size: 28px;
-  margin-bottom: 28px;
+  max-width: 860px;
+  margin: 0 auto;
+  text-align: center;
+  color: var(--color-text);
+}
+
+.referenzen-projects .section-intro {
+  max-width: 860px;
+  margin: 16px auto 24px;
+  text-align: center;
 }
 
 .project-cards {
@@ -1403,7 +1433,7 @@ header.site-header.is-scrolled {
    ========================================================================== */
 
 .blog-teaser .container {
-  max-width: 1360px;
+  max-width: 1150px;
 }
 
 .blog-teaser-header {
@@ -1436,8 +1466,8 @@ header.site-header.is-scrolled {
 
 .blog-card-image {
   box-sizing: border-box;
-  width: calc(100% - 28px);
-  margin: 14px 14px 0;
+  width: calc(100% - 24px);
+  margin: 12px 12px 0;
   padding: 6px;
   aspect-ratio: 4 / 3;
   border-radius: var(--radius-md);
@@ -1460,20 +1490,20 @@ header.site-header.is-scrolled {
 }
 
 .blog-card-body {
-  padding: 20px 24px 24px;
+  padding: 16px 20px 20px;
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 8px;
   flex-grow: 1;
 }
 
 .blog-card h3 {
-  font-size: 24px;
+  font-size: 21px;
 }
 
 .blog-card p {
   color: var(--color-text-secondary);
-  font-size: 16px;
+  font-size: 15px;
   flex-grow: 1;
 }
 
@@ -2325,7 +2355,7 @@ footer.site-footer {
   }
 
   .referenzen-image img {
-    height: 320px;
+    height: 280px;
   }
 
   .referenzen-checklist {
