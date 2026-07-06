@@ -171,7 +171,7 @@ h3 {
   background-size: 300% 100%;
   background-position: 0% 50%;
   opacity: 0;
-  transition: opacity 0.5s ease;
+  transition: opacity 0s;
 }
 
 .btn-cta:hover,
@@ -183,7 +183,7 @@ h3 {
 .btn-cta:hover::before,
 .btn-cta:focus-visible::before {
   opacity: 1;
-  animation: btn-cta-flow 2s ease-in-out forwards;
+  animation: btn-cta-flow 2s ease-out forwards;
 }
 
 @keyframes btn-cta-flow {
@@ -698,10 +698,10 @@ header.site-header.is-scrolled {
 
 .problem-top {
   display: grid;
-  grid-template-columns: 1fr 300px;
-  gap: 48px;
-  align-items: start;
-  margin-bottom: 24px;
+  grid-template-columns: 1fr 460px;
+  gap: 32px;
+  align-items: center;
+  margin-bottom: 8px;
 }
 
 .problem-header {
@@ -709,8 +709,17 @@ header.site-header.is-scrolled {
   margin-bottom: 0;
 }
 
+@media (min-width: 1025px) {
+  .problem-header {
+    margin-top: -110px;
+  }
+}
+
 .problem-visual {
+  position: relative;
   margin-bottom: 0;
+  margin-top: 28px;
+  transform: translateX(-24px);
   border-radius: var(--radius-lg);
   overflow: hidden;
   box-shadow: var(--shadow-card);
@@ -722,20 +731,42 @@ header.site-header.is-scrolled {
   display: block;
 }
 
+.problem-visual-marker {
+  position: absolute;
+  top: 38.1%;
+  left: 81.9%;
+  width: 12px;
+  height: 12px;
+  margin: -6px 0 0 -6px;
+  border-radius: 50%;
+  background: var(--color-accent);
+  pointer-events: none;
+  animation: problem-marker-pulse 2.2s ease-out infinite;
+}
+
+@keyframes problem-marker-pulse {
+  0% { box-shadow: 0 0 0 0 rgba(var(--color-accent-rgb), 0.55); }
+  70% { box-shadow: 0 0 0 14px rgba(var(--color-accent-rgb), 0); }
+  100% { box-shadow: 0 0 0 0 rgba(var(--color-accent-rgb), 0); }
+}
+
 .problem-subheading {
-  max-width: 760px;
-  margin: 0 auto 12px;
-  text-align: center;
+  margin: -95px 0 60px;
 }
 
 .problem-subheading h3 {
+  max-width: 660px;
   font-size: 24px;
   font-weight: 600;
   color: #3A3F4B;
-  margin-bottom: 12px;
+  text-align: left;
+  margin: 0 0 12px;
 }
 
 .problem-subheading p {
+  max-width: 760px;
+  margin: 0 auto;
+  text-align: center;
   color: var(--color-text-secondary);
   font-size: 16px;
   line-height: 1.6;
@@ -752,9 +783,10 @@ header.site-header.is-scrolled {
 
 .challenges-viewport {
   position: relative;
-  flex: 1;
+  flex: 0 1 720px;
+  max-width: 720px;
   min-width: 0;
-  height: 350px;
+  height: 315px;
   perspective: 1400px;
   overflow-x: hidden;
   overflow-y: visible;
@@ -777,33 +809,29 @@ header.site-header.is-scrolled {
   position: absolute;
   top: 50%;
   left: 50%;
-  width: min(340px, 82vw);
-  height: 315px;
+  width: min(285px, 78vw);
+  height: 265px;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  padding: 20px 26px;
+  padding: 16px 22px;
   border: 1px solid var(--color-border);
   border-radius: var(--radius-lg);
   background: var(--color-bg);
   box-shadow: var(--shadow-card);
   cursor: pointer;
   user-select: none;
-  filter: blur(0);
-  transition: transform 0.5s cubic-bezier(0.22, 0.61, 0.36, 1), opacity 0.5s ease, filter 0.5s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+  transition: transform 0.6s cubic-bezier(0.22, 0.61, 0.36, 1), opacity 0.6s ease, filter 0.6s ease, box-shadow 0.4s ease, border-color 0.3s ease;
 }
 
 .challenge-card.is-dragging {
   transition: none;
 }
 
-.challenge-card.is-prev,
-.challenge-card.is-next {
-  filter: blur(2px);
-}
-
 .challenge-card.is-active {
-  filter: blur(0);
+  box-shadow: 0 24px 48px rgba(14, 18, 32, 0.14), 0 8px 20px rgba(var(--color-accent-rgb), 0.12);
+  border-color: rgba(var(--color-accent-rgb), 0.18);
+  cursor: default;
 }
 
 .challenge-card:hover {
@@ -811,36 +839,42 @@ header.site-header.is-scrolled {
   border-color: rgba(var(--color-accent-rgb), 0.3);
 }
 
-.challenge-card.is-active {
-  cursor: default;
-}
-
 .challenge-card:focus-visible {
   outline: 3px solid rgba(var(--color-accent-rgb), 0.4);
   outline-offset: 3px;
 }
 
+.challenge-card.is-prev {
+  -webkit-mask-image: linear-gradient(to left, transparent 0%, black 45%);
+  mask-image: linear-gradient(to left, transparent 0%, black 45%);
+}
+
+.challenge-card.is-next {
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, black 45%);
+  mask-image: linear-gradient(to right, transparent 0%, black 45%);
+}
+
 .challenge-card img {
-  width: 44px;
-  height: 44px;
+  width: 38px;
+  height: 38px;
   object-fit: contain;
-  margin-bottom: 10px;
+  margin-bottom: 9px;
   pointer-events: none;
 }
 
 .challenge-card h3 {
   width: 100%;
   text-align: center;
-  font-size: 28px;
+  font-size: 22px;
   font-weight: 800;
-  margin-bottom: 8px;
+  margin-bottom: 7px;
 }
 
 .challenge-card .problem-desc {
-  font-size: 16px;
+  font-size: 14px;
   font-weight: 400;
   color: var(--color-text-secondary);
-  line-height: 1.45;
+  line-height: 1.42;
 }
 
 .carousel-arrow {
@@ -922,8 +956,8 @@ header.site-header.is-scrolled {
   position: relative;
   display: block;
   width: 100%;
-  height: 130px;
-  margin: 0 auto 12px;
+  height: 136px;
+  margin: 0 auto 6px;
   border-radius: var(--radius-md);
   overflow: hidden;
   background: linear-gradient(135deg, rgba(var(--color-accent-rgb), 0.1), rgba(var(--color-accent-rgb), 0.02));
@@ -939,7 +973,7 @@ header.site-header.is-scrolled {
   object-fit: contain;
   object-position: center;
   display: block;
-  padding: 14px;
+  padding: 2px;
   box-sizing: border-box;
   border-radius: var(--radius-md);
   transition: transform 0.4s ease;
@@ -966,14 +1000,11 @@ header.site-header.is-scrolled {
 }
 
 .solution-card:hover .solution-card-icon {
-  overflow: visible;
-  z-index: 30;
   box-shadow: inset 0 0 0 1px rgba(var(--color-accent-rgb), 0.08), 0 10px 24px rgba(var(--color-accent-rgb), 0.16);
 }
 
 .solution-card:hover .solution-card-icon img {
-  transform: scale(1.6);
-  box-shadow: 0 20px 40px rgba(14, 18, 32, 0.22);
+  transform: scale(1.08);
 }
 
 .solution-card:hover .solution-card-icon::after {
@@ -1015,8 +1046,8 @@ header.site-header.is-scrolled {
 
 .services-layout {
   display: grid;
-  grid-template-columns: minmax(260px, 380px) 1fr;
-  gap: 56px;
+  grid-template-columns: minmax(280px, 32.5%) 1fr;
+  gap: 40px;
   align-items: start;
 }
 
@@ -1028,18 +1059,23 @@ header.site-header.is-scrolled {
   top: 140px;
 }
 
+.services-header h2 {
+  max-width: 400px;
+}
+
 .services-header .section-intro {
+  max-width: 360px;
   margin: 16px 0 0;
 }
 
 .services-header .btn {
-  margin-top: 24px;
+  margin-top: 20px;
 }
 
 .services-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 24px;
+  gap: 26px;
   align-items: stretch;
 }
 
@@ -1050,11 +1086,11 @@ header.site-header.is-scrolled {
   background: var(--color-card);
   border: 1px solid var(--color-border);
   border-radius: var(--radius-lg);
-  padding: 32px 28px 28px;
+  padding: 28px;
   display: flex;
   flex-direction: column;
-  gap: 12px;
-  min-height: 310px;
+  gap: 6px;
+  min-height: 300px;
   box-shadow: var(--shadow-card);
   transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.45s ease;
 }
@@ -1096,18 +1132,19 @@ header.site-header.is-scrolled {
 }
 
 .service-card .arrow-btn {
-  width: 40px;
-  height: 40px;
-  font-size: 1rem;
+  width: 36px;
+  height: 36px;
+  font-size: 0.9rem;
+  margin-top: auto;
 }
 
 .service-card-icon {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 88px;
-  height: 88px;
-  margin-bottom: 4px;
+  width: 56px;
+  height: 56px;
+  margin-bottom: 2px;
 }
 
 .service-card-icon img {
@@ -1122,23 +1159,26 @@ header.site-header.is-scrolled {
 }
 
 .service-card h3 {
-  font-size: 28px;
+  font-size: 22px;
   font-weight: 800;
+  min-height: 56px;
+  display: flex;
+  align-items: flex-start;
   transition: color 0.3s ease;
 }
 
 .service-card .lead {
   font-weight: 600;
   color: var(--color-text);
-  font-size: 16px;
+  font-size: 15px;
+  min-height: 40px;
   transition: color 0.3s ease;
 }
 
 .service-card p.desc {
   color: var(--color-text-secondary);
-  font-size: 16px;
-  line-height: 1.6;
-  flex-grow: 1;
+  font-size: 14px;
+  line-height: 1.55;
   transition: color 0.3s ease;
 }
 
@@ -1174,6 +1214,7 @@ header.site-header.is-scrolled {
   overflow: hidden;
   display: flex;
   flex-direction: column;
+  box-shadow: var(--shadow-card);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
@@ -1253,7 +1294,10 @@ header.site-header.is-scrolled {
 
 .referenzen-cta {
   margin-top: 32px;
-  text-align: right;
+}
+
+.referenzen-cta .btn {
+  width: 100%;
 }
 
 .referenzen-image-group {
@@ -1265,16 +1309,14 @@ header.site-header.is-scrolled {
   padding: 20px;
 }
 
-.referenzen-image-frame::before {
-  content: "";
+.referenzen-image-shape-main {
   position: absolute;
-  top: 20px;
-  left: 20px;
-  right: 20px;
-  bottom: 20px;
+  top: 38px;
+  left: calc(6.5% + 35px);
+  right: calc(6.5% - 1px);
+  bottom: 2px;
   background: #FF5936;
   border-radius: var(--radius-lg);
-  transform: rotate(-4deg) scale(0.85);
   z-index: 0;
 }
 
@@ -1295,12 +1337,23 @@ header.site-header.is-scrolled {
   display: block;
 }
 
+.referenzen-kicker {
+  color: var(--color-text-secondary);
+  font-size: 15px;
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+
+.referenzen-content h3 {
+  margin: 4px 0 16px;
+}
+
 .referenzen-content p {
   color: var(--color-text-secondary);
   margin-bottom: 14px;
 }
 
-.referenzen-content p:first-of-type {
+.referenzen-greeting {
   color: var(--color-text);
   font-weight: 700;
   font-size: 16px;
@@ -1310,7 +1363,15 @@ header.site-header.is-scrolled {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 16px 24px;
-  margin: 20px 0 32px;
+  margin: 20px 0 20px;
+}
+
+.referenzen-languages {
+  color: var(--color-text-secondary);
+  font-size: 13px;
+  border-top: 1px solid var(--color-border);
+  padding-top: 14px;
+  margin-bottom: 24px;
 }
 
 .referenzen-checklist li {
@@ -1341,6 +1402,11 @@ header.site-header.is-scrolled {
   height: 13px;
 }
 
+.referenzen-projects .eyebrow {
+  display: block;
+  text-align: center;
+}
+
 .referenzen-projects h3.subtitle {
   font-size: 28px;
   max-width: 860px;
@@ -1359,6 +1425,11 @@ header.site-header.is-scrolled {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 24px;
+}
+
+.referenzen-projects-cta {
+  text-align: center;
+  margin-top: 40px;
 }
 
 .project-card {
@@ -1456,6 +1527,7 @@ header.site-header.is-scrolled {
   overflow: hidden;
   display: flex;
   flex-direction: column;
+  box-shadow: var(--shadow-card);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
@@ -1465,6 +1537,7 @@ header.site-header.is-scrolled {
 }
 
 .blog-card-image {
+  position: relative;
   box-sizing: border-box;
   width: calc(100% - 24px);
   margin: 12px 12px 0;
@@ -1476,17 +1549,31 @@ header.site-header.is-scrolled {
   overflow: hidden;
 }
 
+.blog-card-image::after {
+  content: '';
+  position: absolute;
+  inset: 6px;
+  border-radius: calc(var(--radius-md) - 6px);
+  background: linear-gradient(155deg, #FF8A5C, #FF4438 50%, #B23420 100%);
+  mix-blend-mode: color;
+  opacity: 0.78;
+  pointer-events: none;
+  z-index: 1;
+}
+
 .blog-card-image img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   border-radius: calc(var(--radius-md) - 6px);
   display: block;
-  transition: transform 0.4s ease;
+  filter: grayscale(0.9) contrast(1.08) brightness(1.08);
+  transition: transform 0.4s ease, filter 0.4s ease;
 }
 
 .blog-card:hover .blog-card-image img {
   transform: scale(1.05);
+  filter: grayscale(0.8) contrast(1.1) brightness(1.1);
 }
 
 .blog-card-body {
@@ -2172,6 +2259,14 @@ footer.site-footer {
     grid-template-columns: 1fr;
   }
 
+  .problem-subheading {
+    margin: 0 0 8px;
+  }
+
+  .problem-visual {
+    transform: none;
+  }
+
   .services-header {
     position: static;
     top: auto;
@@ -2186,11 +2281,9 @@ footer.site-footer {
   }
 
   .challenges-viewport {
-    height: 350px;
-  }
-
-  .challenge-card {
-    height: 315px;
+    flex-basis: 610px;
+    max-width: 610px;
+    height: 295px;
   }
 
   .hero-badge-2,
@@ -2305,13 +2398,15 @@ footer.site-footer {
   }
 
   .challenges-viewport {
-    height: 550px;
+    flex-basis: 210px;
+    max-width: 210px;
+    height: 440px;
   }
 
   .challenge-card {
-    width: min(228px, 68vw);
-    height: 510px;
-    padding: 16px 22px;
+    width: min(182px, 68vw);
+    height: 410px;
+    padding: 14px 18px;
   }
 
   .carousel-arrow {
@@ -2356,6 +2451,13 @@ footer.site-footer {
 
   .referenzen-image img {
     height: 280px;
+  }
+
+  .referenzen-image-shape-main {
+    top: 29px;
+    left: calc(6.5% + 26px);
+    right: calc(6.5% + 8px);
+    bottom: 11px;
   }
 
   .referenzen-checklist {

@@ -175,35 +175,51 @@ document.addEventListener('DOMContentLoaded', function () {
         return { spacing: 40, scaleStep: 0.12, rotate: 8, maxVisible: 0 };
       }
       if (w < 1024) {
-        return { spacing: 170, scaleStep: 0.14, rotate: 16, maxVisible: 2 };
+        return { spacing: 160, scaleStep: 0.14, rotate: 16, maxVisible: 1 };
       }
-      return { spacing: 250, scaleStep: 0.14, rotate: 22, maxVisible: 2 };
+      return { spacing: 205, scaleStep: 0.14, rotate: 22, maxVisible: 1 };
     }
 
-    function normalizedDiff(cardIndex) {
-      var diff = cardIndex - currentIndex;
-      diff = ((diff % total) + total) % total;
-      if (diff > total / 2) diff -= total;
-      return diff;
+    var prevDiffs = null;
+
+    function resolveDiff(cardIndex) {
+      var raw = cardIndex - currentIndex;
+      var m = ((raw % total) + total) % total;
+
+      /* Für jede Karte außer der exakt gegenüberliegenden ist die kleinste
+         Darstellung eindeutig und braucht keine Historie - das verhindert
+         jede Drift oder Fehlklassifizierung durch alte, geklemmte Werte. */
+      if (total % 2 !== 0 || m !== total / 2) {
+        return m > total / 2 ? m - total : m;
+      }
+
+      /* Nur die exakt gegenüberliegende Karte ist mehrdeutig (+total/2 oder
+         -total/2 sind gleichwertig) - hier an der vorherigen Seite festhalten,
+         damit sie nicht bei jedem Schritt die Seite wechselt. */
+      var prev = prevDiffs ? prevDiffs[cardIndex] : m;
+      return Math.abs(m - prev) <= Math.abs(m - total - prev) ? m : m - total;
     }
 
     function render(liveOffset) {
       liveOffset = liveOffset || 0;
       var cfg = getLayoutConfig();
+      var newDiffs = [];
 
       cards.forEach(function (card, i) {
-        var diff = normalizedDiff(i);
+        var diff = resolveDiff(i);
+        newDiffs[i] = diff;
         var abs = Math.abs(diff);
         var dir = diff > 0 ? 1 : diff < 0 ? -1 : 0;
-        var x, scale, rotate, opacity, z, pointerEvents;
+        var x, scale, rotate, opacity, blur, z, pointerEvents;
 
         card.classList.remove('is-active', 'is-prev', 'is-next');
 
         if (diff === 0) {
           x = 0;
-          scale = 1;
+          scale = 1.06;
           rotate = 0;
           opacity = 1;
+          blur = 0;
           z = 10;
           pointerEvents = 'auto';
           card.classList.add('is-active');
@@ -213,22 +229,25 @@ document.addEventListener('DOMContentLoaded', function () {
           scale = 1 - cfg.scaleStep;
           rotate = 0;
           opacity = 0;
+          blur = 0;
           z = 1;
           pointerEvents = 'none';
         } else if (abs <= cfg.maxVisible) {
           x = dir * cfg.spacing * abs;
           scale = 1 - cfg.scaleStep * abs;
           rotate = -dir * cfg.rotate;
-          opacity = abs === 1 ? 0.5 : 0.35;
+          opacity = abs === 1 ? 0.65 : 0.4;
+          blur = abs === 1 ? 1 : 2;
           z = 10 - abs;
           pointerEvents = 'auto';
-          if (diff === -1) card.classList.add('is-prev');
-          if (diff === 1) card.classList.add('is-next');
+          if (dir === -1) card.classList.add('is-prev');
+          if (dir === 1) card.classList.add('is-next');
         } else {
           x = dir * 700;
           scale = 0.6;
           rotate = -dir * cfg.rotate;
           opacity = 0;
+          blur = 2;
           z = 1;
           pointerEvents = 'none';
         }
@@ -237,11 +256,14 @@ document.addEventListener('DOMContentLoaded', function () {
 
         card.style.transform = 'translate(-50%, -50%) translateX(' + x + 'px) scale(' + scale + ') rotateY(' + rotate + 'deg)';
         card.style.opacity = String(opacity);
+        card.style.filter = 'blur(' + blur + 'px)';
         card.style.zIndex = String(z);
         card.style.pointerEvents = pointerEvents;
         card.setAttribute('aria-hidden', diff === 0 ? 'false' : 'true');
         card.tabIndex = diff === 0 ? 0 : -1;
       });
+
+      prevDiffs = newDiffs;
     }
 
     function goTo(index) {
@@ -296,7 +318,12 @@ document.addEventListener('DOMContentLoaded', function () {
 
     viewport.addEventListener('pointermove', function (e) {
       if (!isDragging) return;
-      dragDelta = e.clientX - startX;
+      var cfg = getLayoutConfig();
+      var maxDrag = cfg.spacing || 1;
+      var rawDelta = e.clientX - startX;
+      /* Begrenzen, damit sich das Deck nie weiter verschiebt, als ein einzelner
+         Schritt zulässt - kein freies Durchscrollen bis zum Anschlag. */
+      dragDelta = Math.max(-maxDrag, Math.min(maxDrag, rawDelta));
       render(dragDelta);
     });
 
