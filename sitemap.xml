@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ENTWURF – basiert auf der aktuellen statischen Seitenstruktur.
+  Impressum, Datenschutz und Cookie-Richtlinie sind bewusst NICHT enthalten,
+  da sie <meta name="robots" content="noindex, follow"> tragen.
+  Nach der WordPress-Migration prüfen: /digitales-wissen/ wird dann von
+  WordPress verwaltet und benötigt vermutlich einzelne Artikel-URLs statt
+  nur der Übersichtsseite. lastmod-Daten fehlen bewusst, da keine
+  verifizierten Änderungsdaten vorliegen (keine Platzhalter-Daten erfinden).
+-->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://andraspinter.de/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://andraspinter.de/digitales-wissen/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://andraspinter.de/sitemap.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.3</priority>
+  </url>
+</urlset>

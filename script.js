@@ -122,6 +122,24 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   }
 
+  /* ---------- Kontakt: bedingtes Bundesland-Feld ---------- */
+  var landSelect = document.getElementById('land');
+  var bundeslandWrapper = document.getElementById('bundesland-field-wrapper');
+  var bundeslandSelect = document.getElementById('bundesland');
+
+  if (landSelect && bundeslandWrapper && bundeslandSelect) {
+    landSelect.addEventListener('change', function () {
+      if (landSelect.value === 'deutschland') {
+        bundeslandWrapper.classList.add('is-visible');
+        bundeslandSelect.disabled = false;
+      } else {
+        bundeslandWrapper.classList.remove('is-visible');
+        bundeslandSelect.disabled = true;
+        bundeslandSelect.value = '';
+      }
+    });
+  }
+
   /* ---------- Cookie banner ---------- */
   var cookieBanner = document.querySelector('.cookie-banner');
 

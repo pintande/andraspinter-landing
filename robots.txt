@@ -1,0 +1,8 @@
+# robots.txt – ENTWURF (Stand: statische Seite vor WordPress-Migration)
+# Nach der Migration prüfen, ob sich die URL-Struktur (insbesondere /digitales-wissen/)
+# geändert hat und diese Datei ggf. anpassen.
+
+User-agent: *
+Allow: /
+
+Sitemap: https://andraspinter.de/sitemap.xml
