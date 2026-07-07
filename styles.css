@@ -1356,6 +1356,21 @@ header.site-header.is-scrolled {
   display: block;
 }
 
+.uebermich-badge-link {
+  display: block;
+  width: 100px;
+  height: 100px;
+  margin-top: 48px;
+  margin-left: 60px;
+  clip-path: circle(50%);
+}
+
+.uebermich-badge {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
 .referenzen-kicker {
   color: var(--color-text-secondary);
   font-size: 0.9375rem;
