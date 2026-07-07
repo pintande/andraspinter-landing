@@ -122,10 +122,12 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   }
 
-  /* ---------- Kontakt: bedingtes Bundesland-Feld ---------- */
+  /* ---------- Kontakt: bedingtes Bundesland-/Land-Sonstiges-Feld ---------- */
   var landSelect = document.getElementById('land');
   var bundeslandWrapper = document.getElementById('bundesland-field-wrapper');
   var bundeslandSelect = document.getElementById('bundesland');
+  var landSonstigesWrapper = document.getElementById('land-sonstiges-field-wrapper');
+  var landSonstigesInput = document.getElementById('land-sonstiges');
 
   if (landSelect && bundeslandWrapper && bundeslandSelect) {
     landSelect.addEventListener('change', function () {
@@ -137,6 +139,214 @@ document.addEventListener('DOMContentLoaded', function () {
         bundeslandSelect.disabled = true;
         bundeslandSelect.value = '';
       }
+
+      if (landSonstigesWrapper && landSonstigesInput) {
+        if (landSelect.value === 'sonstiges') {
+          landSonstigesWrapper.classList.add('is-visible');
+          landSonstigesInput.disabled = false;
+        } else {
+          landSonstigesWrapper.classList.remove('is-visible');
+          landSonstigesInput.disabled = true;
+          landSonstigesInput.value = '';
+        }
+      }
+    });
+  }
+
+  /* ---------- Kontakt: deutsche Formularvalidierung ---------- */
+  var kontaktForm = document.querySelector('.kontakt-form');
+
+  if (kontaktForm) {
+    var ERROR_MESSAGES = {
+      required: 'Bitte füllen Sie dieses Feld aus.',
+      email: 'Bitte geben Sie eine gültige E-Mail-Adresse ein.',
+      url: 'Bitte geben Sie eine gültige Internetadresse ein (z. B. https://ihre-website.de).',
+      radio: 'Bitte wählen Sie eine Option aus.',
+      select: 'Bitte treffen Sie eine Auswahl.',
+      checkbox: 'Bitte stimmen Sie der Datenschutzerklärung zu.'
+    };
+
+    var EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    var URL_RE = /^https?:\/\/.+\..+/i;
+    var formSubmitted = false;
+
+    function showFieldError(errorEl, groupEl, message) {
+      if (errorEl) {
+        var textEl = errorEl.querySelector('.form-error-text');
+        if (textEl) textEl.textContent = message;
+        errorEl.classList.add('is-visible');
+      }
+      if (groupEl) groupEl.classList.add('has-error');
+    }
+
+    function clearFieldError(errorEl, groupEl) {
+      if (errorEl) errorEl.classList.remove('is-visible');
+      if (groupEl) groupEl.classList.remove('has-error');
+    }
+
+    function validateName() {
+      var field = document.getElementById('name');
+      var errorEl = document.getElementById('name-error');
+      var groupEl = field.closest('.form-group');
+      var valid = field.value.trim().length > 0;
+      if (valid) {
+        clearFieldError(errorEl, groupEl);
+      } else {
+        showFieldError(errorEl, groupEl, ERROR_MESSAGES.required);
+      }
+      return valid;
+    }
+
+    function validateEmail() {
+      var field = document.getElementById('email');
+      var errorEl = document.getElementById('email-error');
+      var groupEl = field.closest('.form-group');
+      var value = field.value.trim();
+      var valid;
+      var message;
+      if (value.length === 0) {
+        valid = false;
+        message = ERROR_MESSAGES.required;
+      } else {
+        valid = EMAIL_RE.test(value);
+        message = ERROR_MESSAGES.email;
+      }
+      if (valid) {
+        clearFieldError(errorEl, groupEl);
+      } else {
+        showFieldError(errorEl, groupEl, message);
+      }
+      return valid;
+    }
+
+    function validateHatWebsite() {
+      var checked = kontaktForm.querySelector('input[name="hat_website"]:checked');
+      var errorEl = document.getElementById('hat_website-error');
+      var groupEl = errorEl ? errorEl.closest('.form-group') : null;
+      var valid = !!checked;
+      if (valid) {
+        clearFieldError(errorEl, groupEl);
+      } else {
+        showFieldError(errorEl, groupEl, ERROR_MESSAGES.radio);
+      }
+      return valid;
+    }
+
+    function normalizeWebseite(field) {
+      var value = field.value.trim();
+      if (value.length > 0 && !/^https?:\/\//i.test(value)) {
+        field.value = 'https://' + value;
+      }
+    }
+
+    function validateWebseite() {
+      var field = document.getElementById('webseite');
+      var errorEl = document.getElementById('webseite-error');
+      var groupEl = field.closest('.form-group');
+      if (field.disabled) {
+        clearFieldError(errorEl, groupEl);
+        return true;
+      }
+      normalizeWebseite(field);
+      var value = field.value.trim();
+      var valid;
+      var message;
+      if (value.length === 0) {
+        valid = false;
+        message = ERROR_MESSAGES.required;
+      } else {
+        valid = URL_RE.test(value);
+        message = ERROR_MESSAGES.url;
+      }
+      if (valid) {
+        clearFieldError(errorEl, groupEl);
+      } else {
+        showFieldError(errorEl, groupEl, message);
+      }
+      return valid;
+    }
+
+    function validateAnliegen() {
+      var field = document.getElementById('anliegen');
+      var errorEl = document.getElementById('anliegen-error');
+      var groupEl = field.closest('.form-group');
+      var valid = field.value !== '';
+      if (valid) {
+        clearFieldError(errorEl, groupEl);
+      } else {
+        showFieldError(errorEl, groupEl, ERROR_MESSAGES.select);
+      }
+      return valid;
+    }
+
+    function validateDatenschutz() {
+      var field = kontaktForm.querySelector('input[name="datenschutz"]');
+      var errorEl = document.getElementById('datenschutz-error');
+      var groupEl = field.closest('.form-checkbox');
+      var valid = field.checked;
+      if (valid) {
+        clearFieldError(errorEl, groupEl);
+      } else {
+        showFieldError(errorEl, groupEl, ERROR_MESSAGES.checkbox);
+      }
+      return valid;
+    }
+
+    function validateAll() {
+      var results = [
+        validateName(),
+        validateEmail(),
+        validateHatWebsite(),
+        validateWebseite(),
+        validateAnliegen(),
+        validateDatenschutz()
+      ];
+      return results.indexOf(false) === -1;
+    }
+
+    /* Live-Validierung erst nach dem ersten Absende-Versuch, damit Fehler
+       nicht schon während der ersten Eingabe aufploppen. */
+    document.getElementById('name').addEventListener('input', function () {
+      if (formSubmitted) validateName();
+    });
+    document.getElementById('email').addEventListener('input', function () {
+      if (formSubmitted) validateEmail();
+    });
+    document.getElementById('webseite').addEventListener('input', function () {
+      if (formSubmitted) validateWebseite();
+    });
+    document.getElementById('webseite').addEventListener('blur', function () {
+      normalizeWebseite(this);
+      if (formSubmitted) validateWebseite();
+    });
+    document.getElementById('anliegen').addEventListener('change', function () {
+      if (formSubmitted) validateAnliegen();
+    });
+    kontaktForm.querySelectorAll('input[name="hat_website"]').forEach(function (radio) {
+      radio.addEventListener('change', function () {
+        if (formSubmitted) validateHatWebsite();
+      });
+    });
+    kontaktForm.querySelector('input[name="datenschutz"]').addEventListener('change', function () {
+      if (formSubmitted) validateDatenschutz();
+    });
+
+    kontaktForm.addEventListener('submit', function (e) {
+      formSubmitted = true;
+      var allValid = validateAll();
+
+      e.preventDefault();
+
+      if (!allValid) {
+        var firstError = kontaktForm.querySelector('.form-error.is-visible');
+        if (firstError) {
+          var target = firstError.closest('.form-group') || firstError.closest('.form-checkbox') || firstError;
+          target.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+        return;
+      }
+
+      window.location.href = 'danke.html';
     });
   }
 

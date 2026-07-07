@@ -25,7 +25,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&display=swap">
-<link rel="stylesheet" href="styles.css?v=202607164">
+<link rel="stylesheet" href="styles.css?v=202607180">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -742,15 +742,23 @@
         <li><span class="kontakt-trust-check">✓</span> Mehr Sichtbarkeit bei Google und in KI-Systemen</li>
       </ul>
     </div>
-    <form class="kontakt-form reveal">
+    <form class="kontakt-form reveal" novalidate>
       <div class="form-row">
         <div class="form-group">
           <label for="name">Name *</label>
           <input type="text" id="name" name="name" required>
+          <span class="form-error" id="name-error" role="alert">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/><path d="M12 9v4"/><path d="M12 17h.01"/></svg>
+            <span class="form-error-text"></span>
+          </span>
         </div>
         <div class="form-group">
           <label for="email">Email *</label>
           <input type="email" id="email" name="email" required>
+          <span class="form-error" id="email-error" role="alert">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/><path d="M12 9v4"/><path d="M12 17h.01"/></svg>
+            <span class="form-error-text"></span>
+          </span>
         </div>
       </div>
       <div class="form-group">
@@ -765,10 +773,18 @@
             <span>Nein</span>
           </label>
         </div>
+        <span class="form-error" id="hat_website-error" role="alert">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/><path d="M12 9v4"/><path d="M12 17h.01"/></svg>
+          <span class="form-error-text"></span>
+        </span>
       </div>
       <div class="form-group form-group-website" id="website-field-wrapper">
         <label for="webseite" id="webseite-label">Ihre Website</label>
-        <input type="url" id="webseite" name="webseite" placeholder="https://" disabled>
+        <input type="url" id="webseite" name="webseite" placeholder="ihre-website.de" disabled>
+        <span class="form-error" id="webseite-error" role="alert">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/><path d="M12 9v4"/><path d="M12 17h.01"/></svg>
+          <span class="form-error-text"></span>
+        </span>
       </div>
       <div class="form-row">
         <div class="form-group">
@@ -804,6 +820,10 @@
           </select>
         </div>
       </div>
+      <div class="form-group form-group-land-sonstiges" id="land-sonstiges-field-wrapper">
+        <label for="land-sonstiges">Bitte Land angeben</label>
+        <input type="text" id="land-sonstiges" name="land_sonstiges" placeholder="z. B. Frankreich" disabled>
+      </div>
       <div class="form-group">
         <label for="anliegen">Womit kann ich helfen? *</label>
         <select id="anliegen" name="anliegen" required>
@@ -814,6 +834,10 @@
           <option value="wordpress">WordPress & Technik</option>
           <option value="sonstiges">Sonstiges</option>
         </select>
+        <span class="form-error" id="anliegen-error" role="alert">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/><path d="M12 9v4"/><path d="M12 17h.01"/></svg>
+          <span class="form-error-text"></span>
+        </span>
       </div>
       <div class="form-group">
         <label for="nachricht">Ihre Nachricht</label>
@@ -823,6 +847,10 @@
         <input type="checkbox" name="datenschutz" required>
         <span>Ich habe die <a href="datenschutz.html">Datenschutzerklärung</a> gelesen und stimme zu.</span>
       </label>
+      <span class="form-error" id="datenschutz-error" role="alert">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/><path d="M12 9v4"/><path d="M12 17h.01"/></svg>
+        <span class="form-error-text"></span>
+      </span>
       <button type="submit" class="btn btn-cta">Kostenlose Erstberatung anfordern</button>
     </form>
   </div>
@@ -914,6 +942,6 @@
   </div>
 </div>
 
-<script defer src="script.js?v=202607164"></script>
+<script defer src="script.js?v=202607180"></script>
 </body>
 </html>
